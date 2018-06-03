@@ -1,0 +1,53 @@
+---
+layout: post
+title: On the Extrapolative Powers of Neural Networks.
+date: 2018-06-03
+comments: true
+external-url:
+categories: AI
+---
+
+I'll upload and link the code in Github once I clean it up. It might take a while though.
+1. Introduction
+
+Extrapolation is a vital part of getting machines to exhibit intelligence. Extrapolation is one of the under-lying mechanisms of general intelligence.
+
+In this blog post I conduct various rudimentary experiments to test the extrapolative abilities of neural networks. I turns out that perhaps typical models do not have the necessary a priori knowledge to logically infer about data. This a priori knowledge is that from certain features arise others features. It is a model's goal to recognize this and synthesis these sequences of features given past knowledge.
+
+In this sense, neural networks seems specious and only fit for interpolating. One can think of it as analogous to Monte Carlo methods: it merely estimates using samples from a distribution and interpolates between points. Ultimately this seems unfeasible unless we can sample from some aseptic distribution of pure logic.
+
+Drawing form a physical analogy; if one we trying to derive the shape of bowl, neural networks rain water on it and where each drop collides with something. Humans on the other hand would innovate a shape that matches the criteria of what bowl does.
+2. Experiments
+Modus Operandi.
+
+Although the experiment details vary, they all follow the same modus operandi.
+
+    *We have two types of datum in an image (e.g colored digits, digit with square at the top left, etc).
+    *We generate a set of pairs and exclude them from the training process (e.g red seven, green one etc.)
+    *After training, we test the network on the excluded pairs.
+
+If a model were to successfully classify these excluded pairs it would mean it would be internally symbolizing each data type and synthesizing these symbols into a label.
+Encoding.
+
+I use two types of encoding:
+
+Softmax Encoding:
+
+The length of the resulting vector will be $latex N * M$
+
+Where $latex M$ and $latex N$ are the number of possible types of each data.
+
+To encode the data we use the formula
+
+$O = X + Y * M $
+
+Regressive outputs:
+
+$latex O = [M, N]$
+
+Here I just concatenate labels for the two data types together. An output is correct if each respective entry is within 0.5 of the entries in the label.
+
+This is is perhaps the most basic but preforms badly on even basic classification.
+
+Although completely unusable in real world settings, it makes up what for interpretability  for what it lacks in performance.
+
