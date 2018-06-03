@@ -7,8 +7,11 @@ external-url:
 categories: AI
 ---
 
-I'll upload and link the code in Github once I clean it up. It might take a while though.
-1. Introduction
+
+## Introduction
+
+(*I'll upload and link the code in Github once I clean it up. It might take a while though.*)
+
 
 Extrapolation is a vital part of getting machines to exhibit intelligence. Extrapolation is one of the under-lying mechanisms of general intelligence.
 
@@ -17,25 +20,26 @@ In this blog post I conduct various rudimentary experiments to test the extrapol
 In this sense, neural networks seems specious and only fit for interpolating. One can think of it as analogous to Monte Carlo methods: it merely estimates using samples from a distribution and interpolates between points. Ultimately this seems unfeasible unless we can sample from some aseptic distribution of pure logic.
 
 Drawing form a physical analogy; if one we trying to derive the shape of bowl, neural networks rain water on it and where each drop collides with something. Humans on the other hand would innovate a shape that matches the criteria of what bowl does.
-2. Experiments
-Modus Operandi.
+## Experiments
+##### Modus Operandi.
 
-Although the experiment details vary, they all follow the same modus operandi.
 
-    *We have two types of datum in an image (e.g colored digits, digit with square at the top left, etc).
-    *We generate a set of pairs and exclude them from the training process (e.g red seven, green one etc.)
-    *After training, we test the network on the excluded pairs.
+Although the experiment's minutae vary, they all follow the same underlying pattern.
+
+1. We have two types of datum in an image (*e.g colored digits, digit with square at the top left, etc*).
+2. We generate a set of pairs and exclude them from the training process (*e.g red seven, green one etc.*)
+3. After training, we test the network on the excluded pairs.
 
 If a model were to successfully classify these excluded pairs it would mean it would be internally symbolizing each data type and synthesizing these symbols into a label.
-Encoding.
+##### Encoding.
 
 I use two types of encoding:
 
-Softmax Encoding:
+###### Softmax Encoding:
 
-The length of the resulting vector will be $latex N * M$
+The length of the resulting vector will be $N * M$
 
-Where $latex M$ and $latex N$ are the number of possible types of each data.
+Where $M$ and $N$ are the possible number of each type of data.
 
 To encode the data we use the formula
 
@@ -43,7 +47,7 @@ $O = X + Y * M $
 
 Regressive outputs:
 
-$latex O = [M, N]$
+$ O = [M, N]$
 
 Here I just concatenate labels for the two data types together. An output is correct if each respective entry is within 0.5 of the entries in the label.
 
