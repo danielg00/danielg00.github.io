@@ -8,22 +8,29 @@ categories: AI
 ---
 
 
-## Introduction
+# Introduction
 
 (*I'll upload and link the code in Github once I clean it up. It might take a while though.*)
 
 
-Extrapolation is a vital part of getting machines to exhibit intelligence. Extrapolation is one of the under-lying mechanisms of general intelligence.
+Extrapolation is an integral part of intelligence.
 
-In this blog post I conduct various rudimentary experiments to test the extrapolative abilities of neural networks. I turns out that perhaps typical models do not have the necessary a priori knowledge to logically infer about data. This a priori knowledge is that from certain features arise others features. It is a model's goal to recognize this and synthesis these sequences of features given past knowledge.
+Vaguely, the two main components of extrapolation are the identification of sub-symbols and the logical synthesis of such sub-symbols into a desired output/label by learning how these sub-symbols interact. Softmax neural networks seem to pass through this 
+regime in a translucent manner. The main  body of a N.N. 'kinda' identifies symbols and logits/ 'kinda' synthesize these symbols - albeit, not well and tend to require large amounts of homogeneous data. 
 
-In this sense, neural networks seems specious and only fit for interpolating. One can think of it as analogous to Monte Carlo methods: it merely estimates using samples from a distribution and interpolates between points. Ultimately this seems unfeasible unless we can sample from some aseptic distribution of pure logic.
+In this blog post I conduct various rudimentary experiments to test the extrapolative abilities of neural networks. 
+It turns out that perhaps typical models do not have the necessary a priori knowledge to logically infer about data. 
+This a priori knowledge is that from certain features arise others features. It is a model's goal to recognize this and synthesis these sequences of features given past knowledge.
+
+In this sense, neural networks seems specious and only fit for interpolating. One can think of it as analogous to Monte Carlo methods: it merely estimates using samples from a distribution and interpolates between points. 
+Ultimately this seems unfeasible unless we can sample from some aseptic distribution of pure logic.
 
 Drawing form a physical analogy; if one we trying to derive the shape of bowl, neural networks rain water on it and where each drop collides with something. Humans on the other hand would innovate a shape that matches the criteria of what bowl does.
 > SPEAK HERE ABOUT GOAL OF ELUCIADATING FEATURE SYNTHESIS WITH CREATED DATASETS 
 
-## Experiments
-##### Data
+# Experiments
+
+#### Data
 For this experiment I created a two modified version of the MNIST dataset. A single instance of the new dataset consist of two main objects/attributes that make up the image. 
 
 
@@ -42,8 +49,8 @@ This is the dataset for experiement two. Here datum type 2 is the object at the 
 
 Within each datum there $n$ are sub-datums. For instance, in experiment two, there are $n=3$ sub-datums \(*a cross,a box, absense of a feature*\) making up datum type 2.
 These constructions have no real significance and only serve as a means to make what I'm saying more concise and clear.
-##### Modus Operandi.
 
+#### Modus Operandi.
 
 Although the experiment's minutae vary, they all follow the same underlying pattern.
 
@@ -52,11 +59,11 @@ Although the experiment's minutae vary, they all follow the same underlying patt
 3. After training on what is left, $D_T$, we test the network on the excluded pairs.
 
 If a model were to successfully classify these excluded pairs it would mean it would be internally symbolizing each data type and synthesizing these symbols into a label.
-##### Encoding.
+#### Encoding.
 
 I use two types of encoding:
 
-###### Softmax Encoding:
+##### Softmax Encoding:
 
 To encode the two type of datum into one one-hot vector we can use the formula $N_i + M_i  M_n $ to find its index.
 Here $N_i$, $M_j$ and $M_n$ is the $i^{th}$ datum of one type, the $j^{th}$ of the other and the total $n$ possible datum types of datum A
@@ -129,7 +136,7 @@ As you might of realized, softmax does worse than randomly guessing. Not only th
 Ultimately, it is clear that
 Visualization.
 
-Using PCA we can see the input space being laid out as expected. There are three stratifications accounting for the variability of the data containing a box/cross/or nothing and ten amorphous stratifications orthogonal to the three.
+Using [PCA](https://plot.ly/~danielg00/6.embed) we can see the input space being laid out as expected. There are three stratifications accounting for the variability of the data containing a box/cross/or nothing and ten amorphous stratifications orthogonal to the three.
 Conclusion.
 
 Given the nature of the input space, it seems that the softmax function and using logits makes neural networks ill-equipped to deal with. It will only ever fit data onto what it sees, and
