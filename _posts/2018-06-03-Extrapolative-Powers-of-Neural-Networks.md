@@ -16,7 +16,8 @@ categories: AI
 Extrapolation is an integral part of intelligence.
 
 Vaguely, the two main components of extrapolation are the identification of sub-symbols and the logical synthesis of such sub-symbols into a desired output/label by learning how these sub-symbols interact. Softmax neural networks seem to pass through this 
-regime in a translucent manner. The main  body of a N.N. 'kinda' identifies symbols and logits/ 'kinda' synthesize these symbols - albeit, not well and tend to require large amounts of homogeneous data. 
+regime in a translucent manner. The main  body of a N.N. 'kinda' identifies symbols and logits/softmax function 'kinda' synthesize these symbols - albeit, not well and tend to require large amounts of 
+homogeneous data. 
 
 In this blog post I conduct various rudimentary experiments to test the extrapolative abilities of neural networks. 
 It turns out that perhaps typical models do not have the necessary a priori knowledge to logically infer about data. 
