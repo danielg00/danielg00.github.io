@@ -8,39 +8,39 @@ categories: AI
 ---
 
 
-# Introduction
+## Introduction
 
 (*I'll upload and link the code in Github once I clean it up. It might take a while though.*)
 
 
 Extrapolation is an integral part of intelligence.
 
-Vaguely, the two main components of extrapolation are the identification of sub-symbols and the logical synthesis of such sub-symbols into a desired output/label by learning how these sub-symbols interact. Softmax neural networks seem to pass through this 
-regime in a translucent manner. The main  body of a N.N. 'kinda' identifies symbols and logits/softmax function 'kinda' synthesize these symbols - albeit, not well and tend to require large amounts of 
-homogeneous data. 
+Vaguely, the two main components of extrapolation are the identification of sub-symbols and the logical synthesis of such sub-symbols into a desired output/label by learning how these sub-symbols interact.
+	Softmax neural networks seem to pass through this regime in a translucent manner. The main body of a N.N. 'kinda' identifies symbols and logits/softmax function 'kinda' synthesize these 
+symbols - albeit, not well and tend to require large amounts of homogeneous data. 
 
-In this blog post I conduct various rudimentary experiments to test the extrapolative abilities of neural networks. 
-It turns out that perhaps typical models do not have the necessary a priori knowledge to logically infer about data. 
-This a priori knowledge is that from certain features arise others features. It is a model's goal to recognize this and synthesis these sequences of features given past knowledge.
+In this blog post I conduct various rudimentary experiments to test the extrapolative abilities of neural networks. The result of the experiments seem to point to towards the composition of softmax NNs lacking
+the necessary characteristics to preform rudimentary extrapolation. 
 
-In this sense, neural networks seems specious and only fit for interpolating. One can think of it as analogous to Monte Carlo methods: it merely estimates using samples from a distribution and interpolates between points. 
-Ultimately this seems unfeasible unless we can sample from some aseptic distribution of pure logic.
+Neural networks seems specious and only suitable for interpolating. One can think of it as analogous to Monte Carlo methods: it merely estimates using samples from a distribution and interpolates between 
+points.
 
-Drawing form a physical analogy; if one we trying to derive the shape of bowl, neural networks rain water on it and where each drop collides with something. Humans on the other hand would innovate a shape that matches the criteria of what bowl does.
-> SPEAK HERE ABOUT GOAL OF ELUCIADATING FEATURE SYNTHESIS WITH CREATED DATASETS 
+I will speak more on these ideas when we gain more context with the experiments.
 
-# Experiments
+___
 
-#### Data
-For this experiment I created a two modified version of the MNIST dataset. A single instance of the new dataset consist of two main objects/attributes that make up the image. 
+## Experiments
+
+##### Data
+For this experiment I created a two modified version of the MNIST dataset. A single image of the new dataset will consist of two main objects/attributes that make up the image. 
 
 
 ![]({{site.url}}/assets/color_digits_50p.jpg)
 
 
-This is the modfied dataset for the first experiement. As you can see it features two mains datums-the color of the digit and the digit itself.
+This is the modfied dataset for the first experiement. As you can see it features two main attributes -the color of the digit and the digit itself.
 
-Throughout the rest of the blog post I'll denote the feature of digits as *datum type 1* and the other datum as *datum type 2*. Here datum type 2 is the color of the digits.
+Throughout the rest of the blog post I'll denote the digits as *datum type 1* and the other types as *datum type 2*. Here datum type 2 would be the color of the digits.
 
 
 ![]({{site.url}}/assets/cross_squares_50p.jpg)
@@ -51,7 +51,7 @@ This is the dataset for experiement two. Here datum type 2 is the object at the 
 Within each datum there $n$ are sub-datums. For instance, in experiment two, there are $n=3$ sub-datums \(*a cross,a box, absense of a feature*\) making up datum type 2.
 These constructions have no real significance and only serve as a means to make what I'm saying more concise and clear.
 
-#### Modus Operandi.
+##### Modus Operandi.
 
 Although the experiment's minutae vary, they all follow the same underlying pattern.
 
@@ -60,20 +60,23 @@ Although the experiment's minutae vary, they all follow the same underlying patt
 3. After training on what is left, $D_T$, we test the network on the excluded pairs.
 
 If a model were to successfully classify these excluded pairs it would mean it would be internally symbolizing each data type and synthesizing these symbols into a label.
-#### Encoding.
+
+##### Encoding.
 
 I use two types of encoding:
 
-##### Softmax Encoding:
-
-To encode the two type of datum into one one-hot vector we can use the formula $N_i + M_i  M_n $ to find its index.
-Here $N_i$, $M_j$ and $M_n$ is the $i^{th}$ datum of one type, the $j^{th}$ of the other and the total $n$ possible datum types of datum A
+__Softmax Encoding:__
 
 
+To find the index of an image for a one-hot vector we can use the formula
 
-Regressive outputs:
+$ i = N_l + M_j  M_n $ 
 
-$ O = [M, N]$
+Here $N_k$, $M_j$ and $M_n$ is the $l^{th}$ datum type 1, the $j^{th}$ datum-type 2 and the total $n$ possible datum types of datum type 1.
+
+__Regressive-like outputs:__]
+
+$ O = [M_j, N_k]$
 
 Here I just concatenate labels for the two data types together. An output is correct if each respective entry is within 0.5 of the entries in the label.
 
@@ -81,7 +84,7 @@ This is is perhaps the most basic but preforms badly on even basic classificatio
 
 Although completely unusable in real world settings, it makes up what for interpretability  for what it lacks in performance.
 
-Model and training.
+##### Model and training.
 
 The network goes as follows:
 
@@ -90,9 +93,9 @@ Conv2d\((f=16,k=[2\times2],s=2\)) $\rightarrow$ BatchNorm1d $\rightarrow$ Maxpoo
 
 $\rightarrow$ Conv2d\((f=32,k=[2\times2],s=1\)) $\rightarrow$ BatchNorm1d $\rightarrow$ Maxpool&ReLU\((k=[2\times2]\)) 
 
-$\rightarrow$ Fully Connected layers dependant on output method.
+$\rightarrow$ Fully Connected layers dependent on output method.
 
-Where (f), (k), and (s) are the number of convolutions, their kernel size, and their stride.
+Where (f), (k), and (s) are the number of convolutions, their kernel size, and their stride, respectively.
 
 I used the same model throughout the experiment. The focus of these experiment was not to achieve state-of-the-art accuracy but to demonstrate extrapolative power, 
 therefore the model I defined was quite basic. As you can see in the results below, it has quite paltry performance on MNIST.
@@ -123,8 +126,10 @@ The second is an experiment more apt for convolutions. Instead of having to real
 
 crosses_squares
 	##results##
- 
-3. Analysis.
+
+___
+
+## Discussion.
 Regressive output.
 
 As stated, the regressive outputs provide little real-world utility but yield interesting heuristic information. For instance, in experiment #1 it succeeds in classifying the digit correctly but fails in recognizing it's color.
