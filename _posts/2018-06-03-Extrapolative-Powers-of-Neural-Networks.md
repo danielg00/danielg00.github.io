@@ -7,49 +7,45 @@ external-url:
 categories: AI
 ---
 
-
 ## Introduction
-
-(*I'll upload and link the code in Github once I clean it up. It might take a while though.*)
-
 
 Extrapolation is an integral part of intelligence.
 
 Vaguely, the two main components of extrapolation are the identification of sub-symbols and the logical synthesis of such sub-symbols into a desired output/label by learning how these sub-symbols interact.
-	Softmax neural networks seem to pass through this regime in a translucent manner. The main body of a N.N. 'kinda' identifies symbols and logits/softmax function 'kinda' synthesize these 
+Softmax neural networks seem to pass through this regime in am approximate manner. The main body of a N.N. 'kinda' identifies symbols and classification via softmax function 'kinda' synthesize these 
 symbols - albeit, not well and tend to require large amounts of homogeneous data. 
 
 In this blog post I conduct various rudimentary experiments to test the extrapolative abilities of neural networks. The result of the experiments seem to point to towards the composition of softmax NNs lacking
-the necessary characteristics to preform rudimentary extrapolation. 
+the necessary characteristics to preform rudimentary extrapolation. I emphasize that this obviously isn't justification to abandon deep learning methods, but may point towards us to 
+be more careful when deciding the style of output we want. 
 
-Neural networks seems specious and only suitable for interpolating. One can think of it as analogous to Monte Carlo methods: it merely estimates using samples from a distribution and interpolates between 
-points.
+Conclusively, neural networks seems specious and only suitable for interpolating. One can think of it as analogous to Monte Carlo methods: it merely estimates using samples from a distribution and 
+interpolates between points.
 
 I will speak more on these ideas when we gain more context with the experiments.
 
 ___
 
+
 ## Experiments
 
 ##### Data
-For this experiment I created a two modified version of the MNIST dataset. A single image of the new dataset will consist of two main objects/attributes that make up the image. 
 
+For this experiment I created a two modified version of the MNIST dataset. A single image of the new dataset will consist of two main objects or attributes that make up the image. 
 
 ![]({{site.url}}/assets/color_digits_50p.jpg)
 
+This is an image from the first experiement. As you can see it features two main attributes -the color of the digit and the digit itself.
 
-This is the modfied dataset for the first experiement. As you can see it features two main attributes -the color of the digit and the digit itself.
-
-Throughout the rest of the blog post I'll denote the digits as *datum type 1* and the other types as *datum type 2*. Here datum type 2 would be the color of the digits.
-
+Throughout the rest of the blog post I'll denote the digit as *datum type 1* and the other types as *datum type 2*. Here datum type 2 would be the color of the digits.
 
 ![]({{site.url}}/assets/cross_squares_50p.jpg)
 
-
-This is the dataset for experiement two. Here datum type 2 is the object at the top left of the image. 
+This is the data for experiment two. Here datum type 2 is the object at the top left of the image {a cross, a solid box, or exemption of any visible attribute}.
 
 Within each datum there $n$ are sub-datums. For instance, in experiment two, there are $n=3$ sub-datums \(*a cross,a box, absense of a feature*\) making up datum type 2.
 These constructions have no real significance and only serve as a means to make what I'm saying more concise and clear.
+
 
 ##### Modus Operandi.
 
@@ -74,7 +70,7 @@ $ i = N_l + M_j  M_n $
 
 Here $N_k$, $M_j$ and $M_n$ is the $l^{th}$ datum type 1, the $j^{th}$ datum-type 2 and the total $n$ possible datum types of datum type 1.
 
-__Regressive-like outputs:__]
+__Regressive-like outputs:__
 
 $ O = [M_j, N_k]$
 
@@ -148,10 +144,14 @@ Conclusion.
 Given the nature of the input space, it seems that the softmax function and using logits makes neural networks ill-equipped to deal with. It will only ever fit data onto what it sees, and
 Need to expand on ... Plot embeddings of output of trained network
 
-    links to reasoning.
-    whats needed to implement this.
-    transfer learning.
-    reinforcement learning.
-    geometric explanation of what happening.
-    Could compare spaces of model trained with no exclusion and model
+TODO:
+    Create table of results
+    Links to reasoning.
+    Whats needed to implement this.
+    Transfer learning.
+    Reinforcement learning.
+    Geometric explanation of what happening.
+    Could compare spaces of model trained with no exclusion and model.
 
+<!--  LocalWords:  dataset
+ -->

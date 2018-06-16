@@ -5,6 +5,8 @@
         autoNumber: "AMS"
       }
     },
+    CommonHTML: {
+    		scale: 100},
     tex2jax: {
       inlineMath: [ ['$','$'], ['\(', '\)'] ],
       displayMath: [ ['$$','$$'] ],
