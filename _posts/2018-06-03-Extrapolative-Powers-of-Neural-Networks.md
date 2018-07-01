@@ -12,50 +12,57 @@ categories: AI
 Extrapolation is an integral part of intelligence.
 
 Vaguely, the two main components of extrapolation are the identification of sub-symbols and the logical synthesis of such sub-symbols into a desired output/label by learning how these sub-symbols interact.
-Softmax neural networks seem to pass through this regime in am approximate manner. The main body of a N.N. 'kinda' identifies symbols and classification via softmax function 'kinda' synthesize these 
-symbols - albeit, not well and tend to require large amounts of homogeneous data. 
+Softmax neural networks seem to pass through this regime in am approximate manner. The main body of a N.N. 'kinda' identifies symbols and classification via softmax function 'kinda' synthesize these
+symbols - albeit, not well and tend to require large amounts of homogeneous data.
 
 In this blog post I conduct various rudimentary experiments to test the extrapolative abilities of neural networks. The result of the experiments seem to point to towards the composition of softmax NNs lacking
-the necessary characteristics to preform rudimentary extrapolation. I emphasize that this obviously isn't justification to abandon deep learning methods, but may point towards us to 
-be more careful when deciding the style of output we want. 
+the necessary characteristics to preform rudimentary extrapolation. I emphasize that this obviously isn't justification to abandon deep learning methods, but hint towards that we may want to be more careful
+on how we encode and interpret the output of a neural network.
 
-Conclusively, neural networks seems specious and only suitable for interpolating. One can think of it as analogous to Monte Carlo methods: it merely estimates using samples from a distribution and 
-interpolates between points.
+Conclusively, neural networks seems specious and only suitable for interpolating. One can think of it as analogous to Monte Carlo methods: it can only draw an accurate estimate if it samples from the full
+distribution of a dataset and fail to derive the underlying mechanism/logic of such datasets.
 
-I will speak more on these ideas when we gain more context with the experiments.
+I will speak more on these ideas when we gain more context after the experiments.
 
 ___
 
 
-## Experiments
+##### Data.
 
-##### Data
-
-For this experiment I created a two modified version of the MNIST dataset. A single image of the new dataset will consist of two main objects or attributes that make up the image. 
+For these experiments I made modifications to the MNIST dataset. A single image will consist of two main objects \(or attributes\) that describe the image.
 
 ![]({{site.url}}/assets/color_digits_50p.jpg)
 
-This is an image from the first experiement. As you can see it features two main attributes -the color of the digit and the digit itself.
+This is a sample of the dataset for the first experiment. As you can see it features two main attributes -the color of the digit and the digit itself.
 
-Throughout the rest of the blog post I'll denote the digit as *datum type 1* and the other types as *datum type 2*. Here datum type 2 would be the color of the digits.
+Throughout the rest of the blog post I'll denote the digit as *datum type 1* and the other attribute as *datum type 2*. Here datum type 2 would be the color of the digits.
 
 ![]({{site.url}}/assets/cross_squares_50p.jpg)
 
-This is the data for experiment two. Here datum type 2 is the object at the top left of the image {a cross, a solid box, or exemption of any visible attribute}.
-
-Within each datum there $n$ are sub-datums. For instance, in experiment two, there are $n=3$ sub-datums \(*a cross,a box, absense of a feature*\) making up datum type 2.
-These constructions have no real significance and only serve as a means to make what I'm saying more concise and clear.
-
+This is a sample of data from experiment two. Here datum type 2 is the object at the top left of the image {a cross, a solid box, or exemption of any visible attribute}.
 
 ##### Modus Operandi.
 
-Although the experiment's minutae vary, they all follow the same underlying pattern.
+Within each datum there are $n$ are sub-datums. For instance, in experiment two there are $n=3$ sub-datums making up datum type 2 ($n=10$ for datum type 1).
+These constructions have no real significance and only serve as a means to make what I’m saying more concise and clear.
 
-1. We have two types of datum in an image (*e.g colored digits, digit with square at the top left, etc*).
-2. We generate a set of pairs, $D_E$ and exclude them from the training process (*e.g red seven, green one etc.*)
-3. After training on what is left, $D_T$, we test the network on the excluded pairs.
 
-If a model were to successfully classify these excluded pairs it would mean it would be internally symbolizing each data type and synthesizing these symbols into a label.
+Although the experiment's details vary, they all follow the same underlying pattern.
+
+<div>
+    <a href="https://plot.ly/~danielg00/6/?share_key=xnkXvAYfHGSKGoQ5GnElQi" target="_blank" title="plot.html" style="display: block; text-align: center;">
+	<img src="https://plot.ly/~danielg00/6.png?share_key=xnkXvAYfHGSKGoQ5GnElQi" alt="plot.html" style="max-width: 100%;width: 600px;"
+		width="600" onerror="this.onerror=null;this.src='https://plot.ly/404.png';" /></a>
+    <script data-plotly="danielg00:6" sharekey-plotly="xnkXvAYfHGSKGoQ5GnElQi" src="https://plot.ly/embed.js" async></script>
+</div>
+
+1. We have two types of datum in an image \(e.g colored digits, digit with square at the top left, etc\).
+2. We generate a combination of datum types, $D_E$, and exclude them from the training process \(e.g all the red sevens, green ones etc. We make sure not to exclude full classes of datums such as all the
+red digits etc.\)
+3. After training on the remaining samples, $D_R$, we test the network on the excluded pairs.
+
+If a model were to successfully classify these excluded pairs it would mean it would be internally symbolizing each datum type and synthesizing these symbols into a label. This idea is congruent to vanilla
+classification- we have combinations of features(a curve, straight line etc.) that a label logically arises from. Logic is much less a requisite in generic classification tasks where
 
 ##### Encoding.
 
@@ -66,7 +73,7 @@ __Softmax Encoding:__
 
 To find the index of an image for a one-hot vector we can use the formula
 
-$ i = N_l + M_j  M_n $ 
+$ i = N_l + M_j  M_n $
 
 Here $N_k$, $M_j$ and $M_n$ is the $l^{th}$ datum type 1, the $j^{th}$ datum-type 2 and the total $n$ possible datum types of datum type 1.
 
@@ -87,23 +94,24 @@ The network goes as follows:
 
 Conv2d\((f=16,k=[2\times2],s=2\)) $\rightarrow$ BatchNorm1d $\rightarrow$ Maxpool&ReLU\((k=[2\times2\))
 
-$\rightarrow$ Conv2d\((f=32,k=[2\times2],s=1\)) $\rightarrow$ BatchNorm1d $\rightarrow$ Maxpool&ReLU\((k=[2\times2]\)) 
+$\rightarrow$ Conv2d\((f=32,k=[2\times2],s=1\)) $\rightarrow$ BatchNorm1d $\rightarrow$ Maxpool&ReLU\((k=[2\times2]\))
 
 $\rightarrow$ Fully Connected layers dependent on output method.
 
 Where (f), (k), and (s) are the number of convolutions, their kernel size, and their stride, respectively.
 
-I used the same model throughout the experiment. The focus of these experiment was not to achieve state-of-the-art accuracy but to demonstrate extrapolative power, 
+I used the same model throughout the experiment. The focus of these experiment was not to achieve state-of-the-art accuracy but to demonstrate extrapolative power,
 therefore the model I defined was quite basic. As you can see in the results below, it has quite paltry performance on MNIST.
 
 I trained the model with RMSprop for 1500 iterations with a learning rate of 0.001 and batch size of 128.
 
 Little of this matters, I'm just trying to fill what would have been an empty column with text.
- 
- 
+
+
 Experiment #1.  #Note to self, Should touch on consequences on R.L .
 
 The first experiment I conducted was on a colored version of MNIST.
+
 
 Colored MNSIT digits
 
@@ -152,6 +160,3 @@ TODO:
     Reinforcement learning.
     Geometric explanation of what happening.
     Could compare spaces of model trained with no exclusion and model.
-
-<!--  LocalWords:  dataset
- -->
