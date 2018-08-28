@@ -6,7 +6,7 @@
       }
     },
     CommonHTML: {
-    		scale: 100},
+    		scale: 103},
     tex2jax: {
       inlineMath: [ ['$','$'] ],
       displayMath: [ ['$$','$$'] ],

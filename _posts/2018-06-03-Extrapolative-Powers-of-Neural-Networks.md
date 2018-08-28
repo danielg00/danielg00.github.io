@@ -1,14 +1,14 @@
 ---
 layout: post
-title: On the Extrapolative Powers of Neural Networks.
+title: Extrapolation and Assumptions in Neural Networks.
 date: 2018-06-03
 comments: true
 external-url:
 categories: AI
 ---
 
-## Introduction
 
+<h4 id="introduction-1">Introduction</h4>
 Extrapolation is an integral part of intelligence.
 
 Vaguely, the two main components of extrapolation are the identification of sub-symbols and the logical synthesis of such sub-symbols into a desired output/label by learning how these sub-symbols interact.
@@ -27,42 +27,36 @@ I will speak more on these ideas when we gain more context after the experiments
 ___
 
 
-##### Data.
+#### Data.
 
 For these experiments I made modifications to the MNIST dataset. A single image will consist of two main objects \(or attributes\) that describe the image.
 
-![]({{site.url}}/assets/color_digits_50p.jpg)
+![]({{site.url}}/assets/Exp_pwrs/color_digits_50p.jpg)
 
 This is a sample of the dataset for the first experiment. As you can see it features two main attributes -the color of the digit and the digit itself.
 
 Throughout the rest of the blog post I'll denote the digit as *datum type 1* and the other attribute as *datum type 2*. Here datum type 2 would be the color of the digits.
 
-![]({{site.url}}/assets/cross_squares_50p.jpg)
+![]({{site.url}}/assets/Exp_pwrs/cross_squares_50p.jpg)
 
 This is a sample of data from experiment two. Here datum type 2 is the object at the top left of the image {a cross, a solid box, or exemption of any visible attribute}.
 
-##### Modus Operandi.
+#### Modus Operandi.
 
 Within each datum there are $n$ are sub-datums. For instance, in experiment two there are $n=3$ sub-datums making up datum type 2 ($n=10$ for datum type 1).
 These constructions have no real significance and only serve as a means to make what I’m saying more concise and clear.
 
-
 Although the experiment's details vary, they all follow the same underlying pattern.
-
-<div>
-    <a href="https://plot.ly/~danielg00/6/?share_key=xnkXvAYfHGSKGoQ5GnElQi" target="_blank" title="plot.html" style="display: block; text-align: center;">
-	<img src="https://plot.ly/~danielg00/6.png?share_key=xnkXvAYfHGSKGoQ5GnElQi" alt="plot.html" style="max-width: 100%;width: 600px;"
-		width="600" onerror="this.onerror=null;this.src='https://plot.ly/404.png';" /></a>
-    <script data-plotly="danielg00:6" sharekey-plotly="xnkXvAYfHGSKGoQ5GnElQi" src="https://plot.ly/embed.js" async></script>
-</div>
 
 1. We have two types of datum in an image \(e.g colored digits, digit with square at the top left, etc\).
 2. We generate a combination of datum types, $D_E$, and exclude them from the training process \(e.g all the red sevens, green ones etc. We make sure not to exclude full classes of datums such as all the
 red digits etc.\)
 3. After training on the remaining samples, $D_R$, we test the network on the excluded pairs.
 
-If a model were to successfully classify these excluded pairs it would mean it would be internally symbolizing each datum type and synthesizing these symbols into a label. This idea is congruent to vanilla
-classification- we have combinations of features(a curve, straight line etc.) that a label logically arises from. Logic is much less a requisite in generic classification tasks where
+If a model were to successfully classify these excluded pairs it would mean it would be internally symbolizing each datum type and synthesizing these symbols into a label.
+This idea is congruent to vanilla classification- we have combinations of features(a curve, straight line, shade, etc.) that a label logically arises from. It stress "logically arises from"- what combination of 
+features leads to a label should be deteminsitic. Logical deduction, in the exterapolative sense, is much less a requisite in generic classification tasks(MNIST, CIFAR etc.) where classifying is much more analogous to fitting a learned template; we must see the whole set of features pertaining to each class to accurately make predictions. Conversely, real-life situations do not grant us these niceties. Reality requires
+us to splice and logically synthesize features from different aspects of our experience, creating something like an acyclic graph.
 
 ##### Encoding.
 
@@ -71,30 +65,31 @@ I use two types of encoding:
 __Softmax Encoding:__
 
 
-To find the index of an image for a one-hot vector we can use the formula
+To find the class of an image for a one-hot vector we can use the formula
 
-$ i = N_l + M_j  M_n $
+$ i = N_k + M_j  M_n $
 
-Here $N_k$, $M_j$ and $M_n$ is the $l^{th}$ datum type 1, the $j^{th}$ datum-type 2 and the total $n$ possible datum types of datum type 1.
+Here $N_k$, $M_j$ and $M_n$ is the $k^{th}$ datum type 1, the $j^{th}$ datum type 2 and the total, $n$, possible datum types of datum type 1, respectively. 
+The order of the datum types can arbitrary.
 
 __Regressive-like outputs:__
 
 $ O = [M_j, N_k]$
 
-Here I just concatenate labels for the two data types together. An output is correct if each respective entry is within 0.5 of the entries in the label.
+Here I just concatenate labels for the two data types together giving us a two dimensional ordinal output. An output is correct if each respective entry is within 0.5 of the entries in the label.
 
-This is is perhaps the most basic but preforms badly on even basic classification.
+This is is perhaps the most basic but preforms badly on even basic, non-extrapolative classification.
 
-Although completely unusable in real world settings, it makes up what for interpretability  for what it lacks in performance.
+Although completely unusable in real world settings, it makes up what for interpretability for what it lacks in performance.
 
 ##### Model and training.
 
 The network goes as follows:
 
 
-Conv2d\((f=16,k=[2\times2],s=2\)) $\rightarrow$ BatchNorm1d $\rightarrow$ Maxpool&ReLU\((k=[2\times2\))
+Conv2d\((f=16,$k=[2\times 2]$,s=2\)) $\rightarrow$ BatchNorm1d $\rightarrow$ Maxpool&ReLU\(($k=[2\times 2]$\))
 
-$\rightarrow$ Conv2d\((f=32,k=[2\times2],s=1\)) $\rightarrow$ BatchNorm1d $\rightarrow$ Maxpool&ReLU\((k=[2\times2]\))
+$\rightarrow$ Conv2d\((f=32,$k=[2\times 2]$,s=1\)) $\rightarrow$ BatchNorm1d $\rightarrow$ Maxpool&ReLU\(($k=[2\times 2]$\))
 
 $\rightarrow$ Fully Connected layers dependent on output method.
 
@@ -112,7 +107,7 @@ Experiment #1.  #Note to self, Should touch on consequences on R.L .
 
 The first experiment I conducted was on a colored version of MNIST.
 
-
+#### Results
 Colored MNSIT digits
 
 Here the two categories are color (red, green, blue) and digit (0, ..., 9).
@@ -129,7 +124,8 @@ Experiment #2.
 The second is an experiment more apt for convolutions. Instead of having to realize colors the model must simply recognize either solid square in the top left. As you can see, we've also reverted back to the black and white, 1 channel images.
 
 crosses_squares
-	##results##
+
+
 
 ___
 
@@ -146,14 +142,29 @@ As you might of realized, softmax does worse than randomly guessing. Not only th
 Ultimately, it is clear that
 Visualization.
 
-Using [PCA](https://plot.ly/~danielg00/6.embed) we can see the input space being laid out as expected. There are three stratifications accounting for the variability of the data containing a box/cross/or nothing and ten amorphous stratifications orthogonal to the three.
+Using PCA we can see the input space being laid out as expected. There are three stratifications accounting for the variability of the data containing a box/cross/or nothing and ten amorphous stratifications orthogonal to the three.
+
+<!-- <div> -->
+<!--     <a href="https://plot.ly/~danielg00/6/?share_key=xnkXvAYfHGSKGoQ5GnElQi" target="_blank" title="plot.html" style="display: block; text-align: center;"> -->
+<!-- 	<img src="https://plot.ly/~danielg00/6.png?share_key=xnkXvAYfHGSKGoQ5GnElQi" alt="plot.html" style="max-width: 100%;width: 600px;" -->
+<!-- 		width="600" onerror="this.onerror=null;this.src='https://plot.ly/404.png';" /></a> -->
+<!--     <script data-plotly="danielg00:6" sharekey-plotly="xnkXvAYfHGSKGoQ5GnElQi" src="https://plot.ly/embed.js" async></script> -->
+<!-- </div> -->
+
 Conclusion.
+
+<!-- <img src="{{site.url}}/assets/Exp_pwrs/Figure_1.png" alt="drawing" width="900px"/> -->
+
+you see.
+
+<img src="{{site.url}}/assets/Exp_pwrs/lat_view_comb.png" alt="drawing" width="800px"/>
+
 
 Given the nature of the input space, it seems that the softmax function and using logits makes neural networks ill-equipped to deal with. It will only ever fit data onto what it sees, and
 Need to expand on ... Plot embeddings of output of trained network
 
 TODO:
-    Create table of results
+    Create table of results _/
     Links to reasoning.
     Whats needed to implement this.
     Transfer learning.

@@ -4,7 +4,7 @@ layout: default
 <div class="container main">
   <div class="row">
     <header>
-      <div><center><h1>{{ site.title }}</h1><img src="favicon.jpg" style="width: 7%; height: 7%" align="bottom"></center></div>
+      <div><center><h1>{{ site.title }}</h1><img src="favicon.jpg" style="width: %7ls; height: 7%" align="bottom"></center></div>
       <!-- <center> -->
       <!--   <span class="big-ornament"> -->
       <!--     <svg viewBox="310 350 400 350"> -->
