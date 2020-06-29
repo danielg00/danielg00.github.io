@@ -13,7 +13,8 @@ layout: default
 
 <div class="entry">
   <div id="{{ posts.title }}">
-  <h2><b> {{ posts.title }} </b></h2>
+    <h2><b> {{ posts.title }} </b></h2>
+    <date> {{ posts.date | date: "%Y %B, %d"}} </date>
   <p>  {{ posts }}  </p>
   </div>
 </div>

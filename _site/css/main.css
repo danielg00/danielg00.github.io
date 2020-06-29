@@ -190,7 +190,7 @@ table {
   font: 100% Times New Roman;
   padding-left: 1%;
   text-decoration: underline;
-  font-size: 40px;
+  font-size: 300%;
   color: #000000;
   display: inline; }
 
@@ -228,15 +228,20 @@ table {
   outline-style: solid; }
 
 .entry h2 {
-  text-decoration: underline;
   text-align: left;
   padding-left: 2%;
-  padding-bottom: 30px;
   color: #A90B17; }
 
 .entry p {
   padding-left: 5px;
   padding-right: 10%; }
+
+.entry date {
+  text-decoration: underline;
+  padding-left: 2%;
+  font-size: 15px;
+  font-style: italic;
+  color: 2F2F2F; }
 
 .myheader h1 {
   display: inline; }
