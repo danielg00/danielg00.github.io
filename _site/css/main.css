@@ -169,9 +169,23 @@ table {
   /* Stay at the top */
   left: 0;
   background-color: #630C0C;
-  overflow-x: hidden;
-  /* Disable horizontal scroll */
   padding-top: 20px; }
+
+.sidenav h1 {
+  font: 100% Times New Roman, sans-serif;
+  padding: 10px 12px 30px 16px;
+  text-decoration: underline;
+  font-size: 40px;
+  color: #FFFFFF;
+  display: block; }
+
+.sidenav a {
+  padding: 10px 5px 5px 10px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #57d2ff;
+  display: block;
+  word-wrap: break-line; }
 
 .section {
   height: 33.3%;
@@ -202,26 +216,11 @@ table {
   color: #000000;
   float-right: 40%; }
 
-.sidenav h1 {
-  font: 100% Times New Roman, sans-serif;
-  padding: 10px 12px 30px 16px;
-  text-decoration: underline;
-  font-size: 40px;
-  color: #FFFFFF;
-  display: block; }
-
-.sidenav a {
-  padding: 5px 5px 5px 10px;
-  text-decoration: none;
-  font-size: 20px;
-  color: #57d2ff;
-  display: block; }
-
 .entry {
   width: 100%;
   /* Stay at the top */
   left: 0;
-  background-color: #FFFFFF;
+  background-color: #FFDFAF;
   overflow-x: hidden;
   /* Disable horizontal scroll */
   padding-top: 1px;

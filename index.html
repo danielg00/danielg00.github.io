@@ -34,10 +34,9 @@ layout: default
   
 <div class="sidenav">
   <h1>Recent Posts</h1>
-  {% assign categories = site.categories | sort %}
-  {% for category in categories %}
-  <p>{% for posts in category %} {% for post in posts %}
-    <a href="{{ category | first}}.html#{{ post.title }}">{{ post.title }}</a>{% if forloop.last == false %},&nbsp;&nbsp;{% endif %}
-    {% endfor %} {% endfor %}  </p>
-  {% endfor %}
+  <ul>
+  <p>{% for post in site.posts limit:10 %}
+    <li> <a href="{{ post.categories | first}}.html#{{ post.title }}">{{ post.title }}</a> </li>
+{% endfor %}  </p>
+  <ul>
 </div>
