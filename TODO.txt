@@ -1,0 +1,7 @@
+- Sidebar
+	. Implement so "show more" feature
+	. Allow different colors of differnt categories
+
+- implement "next/prev post" based on date of post in categories
+
+	

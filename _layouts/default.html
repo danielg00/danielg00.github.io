@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  
+  {% include head.html %}
+  <head>
+	  {% include mathjax_support %}
+	  <link rel="shortcut icon" type="image/jpg" href="{{site.url}}/favicon.jpg">
+	  {% include google_analytics %}
+</head>	
+
+  <body>
+    {{ content }}
+    <!-- {% include footer.html %} -->
+  </body>
+</html>

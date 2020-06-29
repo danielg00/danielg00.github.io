@@ -1,0 +1,45 @@
+---
+layout: default
+---
+
+  <div class="row">
+    <header>
+      <div><center><h1> Home </h1> <img src="favicon.jpg" style="width: 4%; height: 4%" align="bottom"></center></div>
+      <center>
+        <span class="big-ornament">
+          <svg viewBox="310 350 400 350">
+    </header>
+
+      <div class="body h2">
+<center> About </center>
+	</div>
+
+      <center> <p> <!-- asd: {% assign categories = site.categories | sort %} -->
+	  <!-- {% for category in categories %} -->
+	  <!-- {{category}} -->
+	  <!-- {% endfor %} -->
+      </p> </center>
+
+      <div class="sidenav">
+  <h1>Recent Posts</h1>
+  <!-- {% assign categories = site.categories | sort %} -->
+  <!-- {% for category in categories %} -->
+  <!-- <h3>On {{ category | first }}</h3> -->
+  <!-- <p>{% for posts in category %} {% for post in posts %} -->
+  <!--   <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>{% if forloop.last == false %},&nbsp;&nbsp;{% endif %} -->
+  <!--   {% endfor %} {% endfor %}  </p> -->
+  <!-- {% endfor %} -->
+  <ML>
+     {% assign categories = site.categories | sort %}
+     {% for category in categories %}
+     <h2> {{ category | first }} </h2>
+  <p>{% for posts in category %} {% for post in posts %}
+    <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>{% if forloop.last == false %},&nbsp;&nbsp;{% endif %}
+    {% endfor %} {% endfor %}  </p>
+  {% endfor %}
+
+</ML>      
+  </div>
+
+      
+
