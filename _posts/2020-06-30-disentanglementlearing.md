@@ -1,6 +1,6 @@
 ---
 layout: post
-title: A quick catch-up in Disentanglement Learning.
+title: A quick catch-up on Disentanglement Learning.
 date: 2020-06-30
 comments: true
 external-url:
