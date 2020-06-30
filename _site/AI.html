@@ -23,26 +23,6 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
   <link rel="stylesheet" href="/css/main.css">
 
-  <script type="text/javascript">
-    window.MathJax = {
-      tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
-        processEscapes: true
-      },
-
-      TeX: {
-        equationNumbers: { autoNumber: "AMS" }
-      },
-
-      CommonHTML: {
-        scale: 90
-      }
-    };
-  </script>
-  <script type="text/javascript" async
-src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -159,26 +139,6 @@ Disentanglement learning aims to learning features or representations that are i
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
   <link rel="stylesheet" href="/css/main.css">
 
-  <script type="text/javascript">
-    window.MathJax = {
-      tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
-        processEscapes: true
-      },
-
-      TeX: {
-        equationNumbers: { autoNumber: "AMS" }
-      },
-
-      CommonHTML: {
-        scale: 90
-      }
-    };
-  </script>
-  <script type="text/javascript" async
-src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -261,8 +221,8 @@ src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 extrapolation tasks. For instance, show an observer a scene of a basketball on a wall and give it a label. Then show it a bottle on its own or in some other context and give it another label. If we’ve learned 
 a disentangled representation of these two inputs, the observer should be able to deduce the label for a scene with a bottle on a wall. It sounds painstakingly simple, but nonetheless an example of emergent extrapolation, in a sense. Arguably it forms the basis for simple extrapolation.</p>
 
-<p><a href="https://arxiv.org/abs/1301.3781">[1]</a> does something similar in their paper on Word2Vec, demonstrating how the embedding space can <a href="https://towardsdatascience.com/how-to-solve-analogies-with-word2vec-6ebaf2354009?gi=5419100a6e07">model analogies</a>. For instance, if one wished to solve the analogy “Man is to Woman, as King is to ?(Queen)”. one can 
-get the word vector $v_{man}, v_{woman}, and v_{king}$, and see that $v_{king} - v_{man} + v_{woman} \approx v_{queen}$. Assuming that each word has some feature such as “royalty” and “gender”, one can see
+<p><a href="https://arxiv.org/abs/1301.3781">[1]</a> does something similar in their paper on Word2Vec, demonstrating how the embedding space can <a href="https://towardsdatascience.com/how-to-solve-analogies-with-word2vec-6ebaf2354009?gi=5419100a6e07">model analogies</a>. For instance, if one wished to solve the analogy “Man is to Woman, as King is to ?(Queen)”. One can 
+get the word vectors $v_{man}, v_{woman}, v_{king}$, and see that $v_{king} - v_{man} + v_{woman} \approx v_{queen}$. Assuming that each word has some feature such as “royalty” and “gender”, one can see
 how this is an “analogy” for disentanglement learning.</p>
 
 <p>The explanation of the task given <a href="https://deepai.org/machine-learning-glossary-and-terms/disentangled-representation-learning">here</a> on deepai.org feels vague:</p>
@@ -292,7 +252,7 @@ Deepmind’s paper <a href="https://deepmind.com/research/publications/towards-d
 
 <p>They propose that a group $G$ acts on a space $X$ through $\cdot:G \times X \rightarrow X$, and that $G$ decomposes into the product of subgroups $G = G_1 \times G_2 \times … $. Perhaps one interesting 
 generalisation of this idea is that $G$ acts on the powerset $\mathcal{P}(X)$. That is, the map may not be bijective and that certain features “collapse”. One could leverage this to explain (or
-devise) algorithms in the supervised learning - particularly maps to one-hot labels.</p>
+devise) algorithms in the supervised setting - particularly maps to one-hot labels.</p>
 
 <p>To be continued…</p>
 
@@ -374,26 +334,6 @@ devise) algorithms in the supervised learning - particularly maps to one-hot lab
   <link rel="stylesheet" href="//brick.a.ssl.fastly.net/PT+Serif:400,400i,700,700i:f/Source+Code+Pro:400,600:f">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
   <link rel="stylesheet" href="/css/main.css">
-
-  <script type="text/javascript">
-    window.MathJax = {
-      tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
-        processEscapes: true
-      },
-
-      TeX: {
-        equationNumbers: { autoNumber: "AMS" }
-      },
-
-      CommonHTML: {
-        scale: 90
-      }
-    };
-  </script>
-  <script type="text/javascript" async
-src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

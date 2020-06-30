@@ -12,8 +12,8 @@ Disentanglement learning aims to learning features or representations that are i
 extrapolation tasks. For instance, show an observer a scene of a basketball on a wall and give it a label. Then show it a bottle on its own or in some other context and give it another label. If we've learned 
 a disentangled representation of these two inputs, the observer should be able to deduce the label for a scene with a bottle on a wall. It sounds painstakingly simple, but nonetheless an example of emergent extrapolation, in a sense. Arguably it forms the basis for simple extrapolation.
 
-[[1]](https://arxiv.org/abs/1301.3781) does something similar in their paper on Word2Vec, demonstrating how the embedding space can [model analogies](https://towardsdatascience.com/how-to-solve-analogies-with-word2vec-6ebaf2354009?gi=5419100a6e07). For instance, if one wished to solve the analogy "Man is to Woman, as King is to ?(Queen)". one can 
-get the word vector $v_{man}, v_{woman}, and v_{king}$, and see that $v_{king} - v_{man} + v_{woman} \approx v_{queen}$. Assuming that each word has some feature such as "royalty" and "gender", one can see
+[[1]](https://arxiv.org/abs/1301.3781) does something similar in their paper on Word2Vec, demonstrating how the embedding space can [model analogies](https://towardsdatascience.com/how-to-solve-analogies-with-word2vec-6ebaf2354009?gi=5419100a6e07). For instance, if one wished to solve the analogy "Man is to Woman, as King is to ?(Queen)". One can 
+get the word vectors $v_{man}, v_{woman}, v_{king}$, and see that $v_{king} - v_{man} + v_{woman} \approx v_{queen}$. Assuming that each word has some feature such as "royalty" and "gender", one can see
 how this is an "analogy" for disentanglement learning.
 
 The explanation of the task given [here](https://deepai.org/machine-learning-glossary-and-terms/disentangled-representation-learning) on deepai.org feels vague:
@@ -44,7 +44,7 @@ Deepmind's paper [[4]](https://deepmind.com/research/publications/towards-defini
 
 They propose that a group $G$ acts on a space $X$ through $\cdot:G \times X \rightarrow X$, and that $G$ decomposes into the product of subgroups $G = G_1 \times G_2 \times ... $. Perhaps one interesting 
 generalisation of this idea is that $G$ acts on the powerset $\mathcal{P}(X)$. That is, the map may not be bijective and that certain features "collapse". One could leverage this to explain (or
-devise) algorithms in the supervised learning - particularly maps to one-hot labels.
+devise) algorithms in the supervised setting - particularly maps to one-hot labels.
 
 To be continued...
 
