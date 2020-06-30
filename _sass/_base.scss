@@ -227,7 +227,7 @@ table {
   height: 100%; /* Full-height: remove this if you want "auto" height */
   width: 25%; /* Set the width of the sidebar */
   position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-  z-index: 1; /* Stay on top */
+  z-index: 0; /* Stay on top */
   top: 0; /* Stay at the top */
   left: 0;
   background-color: #630C0C; 
@@ -242,6 +242,7 @@ table {
   font-size: 40px;
   color: #FFFFFF;
   display: block;
+  word-wrap: break-line;
 }
 
 .sidenav a {
@@ -308,6 +309,10 @@ table {
     padding-left: 2%;
     // padding-bottom: 1%px;
     color: #A90B17;
+}
+
+.entry h3 {
+    padding-left: 0.5%;
 }
 
 .entry p {
