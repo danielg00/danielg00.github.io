@@ -55,7 +55,7 @@ src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </head>
 
   <head>
-	  <script type="text/x-mathjax-config">
+    <!-- <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     TeX: {
       equationNumbers: {
@@ -74,7 +74,37 @@ src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
+ -->
+    <script type="text/javascript" async
+	    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    
+    <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+  extensions: [
+      "MathMenu.js",
+  "MathZoom.js",
+  "AssistiveMML.js",
+      "a11y/accessibility-menu.js"
+  ],
 
+  tex2jax: {      // AND HERE
+    inlineMath: [['$', '$']],
+  displayMath: [['$$', '$$']]
+  },
+  
+  jax: ["input/TeX", "output/CommonHTML"],
+  TeX: {
+  extensions: [
+  "AMSmath.js",
+  "AMSsymbols.js",
+  "noErrors.js",
+  "noUndefined.js",
+  ]
+    }
+  });
+    </script>
+    
 	  <link rel="shortcut icon" type="image/jpg" href="http://localhost:4000/favicon.jpg">
 	  <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-120203839-1"></script>
