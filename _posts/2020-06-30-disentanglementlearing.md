@@ -38,7 +38,7 @@ We observe that while the different methods successfully enforce properties "enc
 video frame in the task of predicting videos by disentangling video frames.
 
 An obvious(if not the biggest) problem is that disentanglement learning must implicitly solve the problem of recognizing objects under transformations (i.e. rotations, translations, etc.). 
-Deepmind's paper [[4]](https://deepmind.com/research/publications/towards-definition-disentangled-representations) attempts to define the task under this scheme. To quotes: 
+Deepmind's paper [[4]](https://deepmind.com/research/publications/towards-definition-disentangled-representations) attempts to define the task under this scheme. To quote: 
 
 *Here we propose that a principled solution to characterising disentangled representations can be found by focusing on the transformation properties of the world.* 
 
