@@ -1,10 +1,10 @@
 ---
 layout: post
 title: Moral pragmatism
-date: 2020-06-30
+date: 2020-07-05
 comments: true
 external-url:
-categories: Misc
+categories: Miscs
 ---
 
 ### Positive statements Vs. Normative statements
@@ -19,7 +19,7 @@ Assume one derives their "oughts" from empirical observations in the world and t
 the observer considers. One ought to chose the normative statement the minimizes the chance you are wrong (the mode of the distribution), but the intensity in which one demands or advocates for such changes
 inversely depends on the variance of such distributions. 
 
-Let's go over a very simple example. 
+Let's go over a very simple example.
 
 
 
